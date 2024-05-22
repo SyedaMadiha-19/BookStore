@@ -21,7 +21,8 @@ function getBooks() {
 }
 
 // Function to delete a book by ID
-function deleteBook(id) {
+function deleteBook() {
+    let id = prompt("enter the id of book u want to delete")
     fetch(`http://localhost:8080/deleteBook?id=${id}`, {
         method: 'DELETE',
     })
@@ -43,19 +44,44 @@ function updateBook(id, updatedBook) {
     .then(data => console.log(data))
     .catch(error => console.error('Error:', error));
 }
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
 
-function addThisBook(event) {
-    event.preventDefault(); // Prevents the default form submission behavior
+        // Get form values
+        var bookId = document.getElementById('bookId').value;
+        var bookName = document.getElementById('bookName').value;
+        var author = document.getElementById('author').value;
+        var publishYear = document.getElementById('publishYear').value;
 
-    const bookId = document.getElementById('bookId').value;
-    const author = document.getElementById('author').value;
-    const bookName = document.getElementById('bookName').value;
-    const publishYear = document.getElementById('publishYear').value;
+        // Create an object with form values
+        var book = {
+            bookId: bookId,
+            bookName: bookName,
+            author: author,
+            publishYear: publishYear
+        };
+        addBook(book)
+    });
+});
 
-    const book = { bookId, bookName, author, publishYear };
-    console.log(book); // Log the book object to the console
 
-    // You can further process the book object here, such as storing it in localStorage or sending it to a server
-} 
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('myFormToUpdate').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get form values
+        var bookId = document.getElementById('bookId').value;
+        var bookName = document.getElementById('bookName').value;
+        var author = document.getElementById('author').value;
+
+        // Create an object with form values
+        var book = {
+            bookName: bookName,
+            author: author
+        };
+        updateBook(bookId,book)
+    });
+});
 
         
