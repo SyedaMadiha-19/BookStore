@@ -1,3 +1,5 @@
+
+
 // Function to add a book
 function addBook(book) {
     fetch('http://localhost:8080/addBooks', {
@@ -16,9 +18,37 @@ function addBook(book) {
 function getBooks() {
     fetch('http://localhost:8080/getBooks')
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => {
+        // Log the data to verify it
+        console.log(data);
+        
+        // Select the element where you want to display the books
+        const listOfBooks = document.getElementById("listOfBooks");
+
+        // Loop through the array of books and create HTML elements for each book
+        data.forEach(book => {
+            // Create a div element to hold the book details
+            const bookDiv = document.createElement('div');
+
+            // Set the innerHTML of the div to display the book details
+            bookDiv.innerHTML = `
+                <p><strong>Book ID:</strong> ${book.bookId}
+                <strong>Title:</strong> ${book.bookName}
+                <strong>Author:</strong> ${book.author}
+                <strong>Published Year:</strong> ${book.publishYear}</p> <hr/><br>
+            `;
+
+            // Append the bookDiv to the listOfBooks element
+            listOfBooks.appendChild(bookDiv);
+        });
+    })
     .catch(error => console.error('Error:', error));
 }
+
+
+    
+    
+
 
 // Function to delete a book by ID
 function deleteBook() {
@@ -83,5 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateBook(bookId,book)
     });
 });
+
+
 
         
