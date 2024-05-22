@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="main.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Book Library</h1>
+    <form id="addBookForm">
+        
+      <label for="title">Book Id:</label>
+      <input type="number" id="bookId" name="bookId" required>
+      
+      <label for="title">Title:</label>
+      <input type="text" id="bookName" name="bookName" required>
+      
+      <label for="author">Author:</label>
+      <input type="text" id="author" name="author" required>
+      
+      <label for="author">Published in Year:</label>
+      <input type="number" id="publishYear" name="publishYear" required>
+      
+      <button onsubmit="addThisBook()">Add Book</button>
+    </form>
+    <ul id="bookList"></ul>
+  </body>
+</html>
